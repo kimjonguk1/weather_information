@@ -55,34 +55,43 @@
     fetchWeatherData();
 }
 
-
-function showDetails(index) {
-    const detailsPage = document.getElementById('weather-details');
-    detailsPage.style.display = 'block'; // 전체 화면으로 전환
-
-    // 여기에 API 데이터를 불러와서 index에 맞는 상세 정보를 채워 넣는 코드를 추가할 수 있습니다.
-    // 예시로는 서울의 데이터를 하드코딩 했습니다.
-    const cityName = document.querySelector('.detail-city-name');
-    const temp = document.querySelector('.detail-temp');
-    const humidity = document.querySelector('.detail-humidity');
-    const wind = document.querySelector('.detail-wind');
-
-    // 임시 데이터 (API 연동 시 수정)
-    if (index === 0) {
-        cityName.textContent = '서울';
-        temp.textContent = '온도: 25°C';
-        humidity.textContent = '습도: 60%';
-        wind.textContent = '바람: 5m/s';
-    } else if (index === 1) {
-        cityName.textContent = '부산';
-        temp.textContent = '온도: 22°C';
-        humidity.textContent = '습도: 70%';
-        wind.textContent = '바람: 3m/s';
+{
+    const $addform = document.getElementById('add-city-form');
+    console.log($addform);
+    $addform.onsubmit = (e) => {
+        e.preventDefault();
+        console.log('click');
     }
-
 }
 
-function closeDetails() {
-    const detailsPage = document.getElementById('weather-details');
-    detailsPage.style.display = 'none'; // 화면에서 상세 정보 숨김
-}
+
+// function showDetails(index) {
+//     const detailsPage = document.getElementById('weather-details');
+//     detailsPage.style.display = 'block'; // 전체 화면으로 전환
+//
+//     // 여기에 API 데이터를 불러와서 index에 맞는 상세 정보를 채워 넣는 코드를 추가할 수 있습니다.
+//     // 예시로는 서울의 데이터를 하드코딩 했습니다.
+//     const cityName = document.querySelector('.detail-city-name');
+//     const temp = document.querySelector('.detail-temp');
+//     const humidity = document.querySelector('.detail-humidity');
+//     const wind = document.querySelector('.detail-wind');
+//
+//     // 임시 데이터 (API 연동 시 수정)
+//     if (index === 0) {
+//         cityName.textContent = '서울';
+//         temp.textContent = '온도: 25°C';
+//         humidity.textContent = '습도: 60%';
+//         wind.textContent = '바람: 5m/s';
+//     } else if (index === 1) {
+//         cityName.textContent = '부산';
+//         temp.textContent = '온도: 22°C';
+//         humidity.textContent = '습도: 70%';
+//         wind.textContent = '바람: 3m/s';
+//     }
+//
+// }
+//
+// function closeDetails() {
+//     const detailsPage = document.getElementById('weather-details');
+//     detailsPage.style.display = 'none'; // 화면에서 상세 정보 숨김
+// }
