@@ -57,10 +57,48 @@
 
 {
     const $addform = document.getElementById('add-city-form');
-    console.log($addform);
     $addform.onsubmit = (e) => {
         e.preventDefault();
-        console.log('click');
+        const xhr = new XMLHttpRequest();
+        const url = new URL('http://api.openweathermap.org/geo/1.0/direct');
+
+        url.searchParams.set('q', $addform['addCity'].value);
+        url.searchParams.set('limit', '5');
+        url.searchParams.set('appid', '05e2e6a2db31162237d37ea54a4a68e7');
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState !== XMLHttpRequest.DONE) {return;}
+            if(xhr.status < 200 || xhr.status >= 300) {return;}
+            const response = JSON.parse(xhr.responseText);
+
+            const weatherXhr = new XMLHttpRequest();
+            const weatherUrl = new URL('https://api.openweathermap.org/data/2.5/weather');
+            weatherUrl.searchParams.set('lat', response[0].lat);
+            weatherUrl.searchParams.set('lon', response[0].lon);
+            weatherUrl.searchParams.set('lang', 'kr');
+            weatherUrl.searchParams.set('appid', '05e2e6a2db31162237d37ea54a4a68e7');
+            weatherXhr.onreadystatechange = () => {
+                if(weatherXhr.readyState !== XMLHttpRequest.DONE) {return;}
+                if(weatherXhr.status < 200 || xhr.status >= 300) {return;}
+                const weatherResponse = JSON.parse(weatherXhr.responseText);
+                console.log(weatherResponse);
+
+                const $weatherGrid = document.getElementById('weather-Grid');
+                const $text = document.createElement('h2');
+                $text.classList.add('city-name');
+                $text.innerText = weatherResponse.name;
+
+                const $card = document.createElement('div');
+                $card.classList.add('weather-card');
+
+                $text.append($card);
+                $card.append($weatherGrid);
+                console.log($card);
+            };
+            weatherXhr.open('GET', weatherUrl.toString());
+            weatherXhr.send();
+        };
+        xhr.open('GET', url.toString());
+        xhr.send();
     }
 }
 
