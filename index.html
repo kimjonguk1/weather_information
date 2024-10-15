@@ -4,12 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>날씨 정보</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./script.js"></script>
 </head>
 <body>
 
 <h1>날씨 정보</h1>
+
+<div class="add-city-form">
+  <label>
+  <input type="text" id="city-input" placeholder="도시 이름 입력" />
+  <button id="add-city-btn">날씨 추가</button>
+  </label>
+</div>
 
 <div id="weather-Grid" class="weather-grid">
   <div class="weather-card">
