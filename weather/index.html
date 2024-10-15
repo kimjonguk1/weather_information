@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날씨 정보</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+<h1>날씨 정보</h1>
+
+<div id="weather-Grid" class="weather-grid">
+  <div class="weather-card">
+    <h2 class="city-name">서울</h2>
+  </div>
+  <div class="weather-card">
+    <h2 class="city-name">부산</h2>
+  </div>
+    <div class="weather-card">
+        <h2 class="city-name">대구</h2>
+    </div>
+    <div class="weather-card">
+        <h2 class="city-name">포항</h2>
+    </div>
+</div>
+
+<!-- 상세 정보 페이지 -->
+<div id="weather-details" class="details-page">
+  <!-- 배경 동영상 -->
+  <video autoplay muted loop id="background-video">
+<!--    <source src="weather-background.mp4" type="video/mp4">-->
+    <!-- 비디오가 지원되지 않을 때 표시할 텍스트 -->
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="details-content">
+    <h2 class="detail-city-name">서울</h2>
+    <p class="detail-temp">온도: 25°C</p>
+    <p class="detail-humidity">습도: 60%</p>
+    <p class="detail-wind">바람: 5m/s</p>
+    <button class="close-btn" onclick="closeDetails()">뒤로 가기</button>
+  </div>
+</div>
+
+
+</body>
+</html>
