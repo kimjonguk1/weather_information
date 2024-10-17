@@ -294,5 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function updateBackgroundVideo(weatherDescription) {
     const $videoSource = document.getElementById('video-source');
 
+    const videoMapping = {
+        '천둥번개' : 'videos/thunderstorm.mp4',
+        '맑은하늘' : 'videos/clear-sky.mp4',
+        '흐림' : 'videos/cloudy.mp4',
+        '눈' : 'videos/snow.mp4',
+        '바람' : 'videos/wind.mp4',
+        '비' : 'videos/rain.mp4',
+        '안개' : 'videos/fog.mp4',
+    };
 
+    let videoSrc = 'videos/default.mp4';
 }
