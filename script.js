@@ -221,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cityName = $clickedCard.querySelector('.city-name').innerText;
 
+
         $detailCityName.innerText = '';  // 도시 이름 초기화
         $detailTemp.innerText = '';      // 온도 초기화
         $detailDesc.innerText = '';      // 설명 초기화
@@ -252,6 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const weatherResponse = await fetch(weatherUrl.toString());
                     const weatherData = await weatherResponse.json();
+                    console.log(wDescEngToKor(weatherData.weather[0].id));
+                    const weatherDescription = wDescEngToKor(weatherData.weather[0].id);
+                    console.log(weatherDescription);
+                    updateBackgroundVideo(weatherDescription);
 
                     // 날씨 데이터를 상세 정보 섹션에 추가
                     $detailCityName.innerText = weatherData.name;
@@ -276,11 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     $detailClouds = document.createElement('p');
                     $detailClouds.innerText = `흐림 정도: ${clouds}%`;
 
-// 날씨 섹션에 추가
-                    $weatherDetails.insertBefore($detailFeelsLike, $closeDetails);
-                    $weatherDetails.insertBefore($detailHumidity, $closeDetails);
-                    $weatherDetails.insertBefore($detailWindSpeed, $closeDetails);
-                    $weatherDetails.insertBefore($detailClouds, $closeDetails);
+                    $closeDetails.insertAdjacentElement('beforebegin', $detailFeelsLike);
+                    $closeDetails.insertAdjacentElement('beforebegin', $detailHumidity);
+                    $closeDetails.insertAdjacentElement('beforebegin', $detailWindSpeed);
+                    $closeDetails.insertAdjacentElement('beforebegin', $detailClouds);
                     $detailIcon.src = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
                     showDetails();
                     hideLoading();
@@ -305,4 +309,65 @@ function updateBackgroundVideo(weatherDescription) {
     };
 
     let videoSrc = 'videos/default.mp4';
+
+    switch (weatherDescription) {
+        case '가벼운 비를 동반한 천둥구름':
+        case '비를 동반한 천둥구름':
+        case '폭우를 동반한 천둥구름':
+        case '약한 천둥구름':
+        case '천둥구름':
+        case '강한 천둥구름':
+        case '불규칙적 천둥구름':
+        case '약한 연무를 동반한 천둥구름':
+            videoSrc = 'videos/thunderstorm.mp4';
+            break;
+
+        case '가벼운 안개비':
+        case '안개비':
+        case '강한 안개비':
+        case '약한 비':
+        case '중간 비':
+        case '강한 비':
+        case '매우 강한 비':
+        case '극심한 비':
+        case '소나기':
+            videoSrc = 'videos/rain.mp4';
+            break;
+
+        case '가벼운 눈':
+        case '눈':
+        case '강한 눈':
+        case '소나기 눈':
+            videoSrc = 'videos/snow.mp4';
+            break;
+
+        case '구름 한 점 없는 맑은 하늘':
+            videoSrc = 'videos/clear-sky.mp4';
+            break;
+
+        case '약간의 구름이 낀 하늘':
+        case '드문드문 구름이 낀 하늘':
+        case '구름이 거의 없는 하늘':
+        case '구름으로 뒤덮인 흐린 하늘':
+            videoSrc = 'videos/cloudy.mp4';
+            break;
+
+        case '안개':
+        case '연무':
+        case '박무':
+            videoSrc = 'videos/fog.mp4';
+            break;
+
+        case '강한 바람':
+        case '돌풍':
+        case '심각한 돌풍':
+            videoSrc = 'videos/wind.mp4';
+            break;
+
+        default:
+            videoSrc = 'videos/default.mp4';  // 기본 비디오
+            break;
+    }
+    $videoSource.src = videoSrc;
+    document.getElementById('background-video').load();
 }

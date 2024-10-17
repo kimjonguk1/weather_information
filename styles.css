@@ -9,6 +9,9 @@ body {
     background-color: #f4f4f9;
     padding: 20px;
     text-align: center;
+    overflow: hidden;
+    height: 100%;
+
 }
 
 h1 {
@@ -24,7 +27,7 @@ h1 {
     font-size: 1.2em;
     color: #333;
     margin-bottom: 10px;
-    display: block; /* 라벨을 input 위에 배치 */
+    display: block;
 }
 
 #city-input {
@@ -32,7 +35,7 @@ h1 {
     font-size: 1em;
     width: 50%;
     max-width: 600px;
-    margin-bottom: 10px; /* 입력 필드 아래 여백 추가 */
+    margin-bottom: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
     transition: border-color 0.3s;
@@ -40,7 +43,7 @@ h1 {
 }
 
 #city-input:focus {
-    border-color: #4CAF50; /* 입력 중일 때 테두리 색 변경 */
+    border-color: #4CAF50;
     outline: none;
 }
 
@@ -57,11 +60,11 @@ h1 {
 }
 
 #add-city-btn:hover {
-    background-color: #45a049; /* 호버 시 색상 변화 */
+    background-color: #45a049;
 }
 
 #add-city-btn:active {
-    background-color: #3e8e41; /* 버튼 클릭 시 색상 변화 */
+    background-color: #3e8e41;
 }
 
 .weather-grid {
@@ -99,9 +102,9 @@ h1 {
     color: #333;
 }
 
-/* 상세 정보 페이지 스타일 */
+
 .details-page {
-    display: none; /* 처음에는 보이지 않음 */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -214,60 +217,67 @@ body > .loading.--visible > .image {
     top: 0;
 }
 
-.weather-details {
-    position: relative;
-    z-index: 1;  /* 비디오보다 앞에 보이도록 설정 */
-    background: rgba(255, 255, 255, 0.8);  /* 반투명 흰색 배경 */
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: 50px auto;
-    text-align: center;
-}
 
 body > .weather-details {
     margin: 3rem;
 }
 
-body > .weather-details > img {
+body > .weather-details > .weather-info >  img {
     width: 150px;
     height: 150px;
 }
 
 #close-details {
-    background-color: #f44336; /* 빨간색 배경 */
-    color: white; /* 글씨 색은 흰색 */
-    border: none; /* 테두리 없음 */
-    border-radius: 5px; /* 둥근 모서리 */
-    padding: 10px 20px; /* 내부 여백 */
-    font-size: 1.1em; /* 글씨 크기 */
-    cursor: pointer; /* 마우스 포인터 */
-    transition: background-color 0.3s ease, transform 0.1s ease; /* 부드러운 배경 색상 및 클릭 애니메이션 */
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 #close-details:hover {
-    background-color: #d32f2f; /* 호버 시 더 어두운 빨간색 */
+    background-color: #d32f2f;
 }
 
 #close-details:active {
-    transform: scale(0.95); /* 클릭 시 약간 작아지는 애니메이션 */
+    transform: scale(0.95);
 }
 
 .weather-details h2,
 .weather-details img,
 .weather-details p,
 .weather-details button {
-    margin-bottom: 10px; /* 각 요소의 하단에 15px 간격 */
+    margin-bottom: 10px;
 }
 
 #background-video {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* 비디오가 화면을 덮도록 조정 */
-    z-index: -1;  /* 비디오가 배경에 있도록 z-index 설정 */
-    opacity: 0.8; /* 약간 투명하게 처리 */
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.7;
+    box-sizing: border-box;
 }
 
+.weather-info {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+
+    /*align-items: center;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*gap: 1rem;*/
+    /*justify-content: center;*/
+}
