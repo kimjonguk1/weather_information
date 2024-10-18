@@ -2,6 +2,7 @@
 <div align="center"><h1>weather_information</h1></div>
 <p align="center">시간과 날씨에 맞춘 동적 배경을 통해 실시간 날씨 정보를 제공하는 사용자 친화적인 날씨 정보 사이트입니다.</p>
 <p align="center">도시 추가 버튼을 통해 원하는 도시의 정보를 불러올 수 있습니다.</p>
+<p align="center">개발 기간 : 10.14~10.18 </p>
 
 <h3 align="center">✨ Tech Stack ✨</h3>
 <div align="center">
